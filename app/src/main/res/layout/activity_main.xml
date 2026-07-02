@@ -51,6 +51,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Button 1"
+            android:enabled="false"
             />
 
         <Button
@@ -118,50 +119,54 @@
             />
     </RadioGroup>
 
-    <ImageView
-        android:id="@+id/imgView"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:src="@drawable/img_install"
+    <LinearLayout
+        android:id="@+id/layout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
 
         app:layout_constraintTop_toBottomOf="@id/rdGroupGender"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/btnHome"
-        />
+        >
+        <ImageButton
+            android:id="@+id/btnHome"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/baseline_home_24"
+            android:background="@drawable/circle_shape_bg_blue"
+            app:backgroundTint="@null"
+            />
 
-    <ImageButton
-        android:id="@+id/btnHome"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:src="@drawable/baseline_home_24"
-        android:background="@drawable/circle_shape_bg_blue"
-        app:backgroundTint="@null"
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:checked="true"
+            android:text="Notifiaction"
+            android:textSize="14sp" />
 
-        app:layout_constraintTop_toBottomOf="@id/rdGroupGender"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+    </LinearLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
+    <SeekBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:endIconMode="password_toggle"
-        app:endIconDrawable="@drawable/outline_ac_unit_24"
-        app:startIconDrawable="@drawable/baseline_home_24"
-        android:layout_marginHorizontal="16dp"
+        android:max="100"
+        android:min="10"
+        android:progress="50"
 
-        app:layout_constraintTop_toBottomOf="@id/btnHome"
+        app:layout_constraintTop_toBottomOf="@id/layout2"
+        />
+
+    <ProgressBar
+        android:id="@+id/loadingView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Enter your password"
-            android:inputType="textPassword"
-            />
-    </com.google.android.material.textfield.TextInputLayout>
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
