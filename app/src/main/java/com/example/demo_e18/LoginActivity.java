@@ -34,7 +34,12 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+
+            var keyboardInset = insets.getInsets(WindowInsetsCompat.Type.ime());// Input Method Editor
+            v.setPadding(systemBars.left,
+                    systemBars.top,
+                    systemBars.right,
+                    systemBars.bottom + keyboardInset.bottom);
             return insets;
         });
 
@@ -44,6 +49,10 @@ public class LoginActivity extends AppCompatActivity {
         });
 
         etUsername = findViewById(R.id.etUsername);
+        var recieveIntent = getIntent();
+        String email = recieveIntent.getStringExtra("email");
+        etUsername.setText(email);
+
         etUsernameLayout = findViewById(R.id.etUsernameLayout);
 
         etUsername.addTextChangedListener(new TextWatcher() {
@@ -74,6 +83,11 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             hideKeyboard();
+        });
+
+        Button btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(v -> {
+            finish();
         });
     }
 
