@@ -1,5 +1,6 @@
 package com.example.demo_e18.adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,9 +18,11 @@ import java.util.List;
 public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.PlanetViewHolder> {
 
     private List<PlanetModel> data;
+    private OnItemClickListener itemClickListener;
 
-    public PlanetAdapter(List<PlanetModel> data) {
+    public PlanetAdapter(List<PlanetModel> data, OnItemClickListener itemClickListener) {
         this.data = data;
+        this.itemClickListener = itemClickListener;
     }
 
     @NonNull
@@ -30,7 +33,7 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.PlanetView
                 .inflate(R.layout.layout_planet_item,
                         parent,
                         false);
-        return new PlanetViewHolder(itemView);
+        return new PlanetAdapter.PlanetViewHolder(itemView, itemClickListener);
     }
 
     @Override
@@ -43,16 +46,26 @@ public class PlanetAdapter extends RecyclerView.Adapter<PlanetAdapter.PlanetView
         return data.size();
     }
 
-    public class PlanetViewHolder extends  RecyclerView.ViewHolder {
+    public static class PlanetViewHolder extends  RecyclerView.ViewHolder {
         private ImageView imgView;
         private TextView txtName;
         private TextView txtTotalMoon;
-        public PlanetViewHolder(@NonNull View itemView) {
+        public PlanetViewHolder(@NonNull View itemView, OnItemClickListener itemClickListener) {
             super(itemView);
 
             imgView = itemView.findViewById(R.id.imgView);
             txtName = itemView.findViewById(R.id.tvName);
             txtTotalMoon = itemView.findViewById(R.id.tvTotalMoon);
+
+            itemView.setOnClickListener(v -> {
+                if (itemClickListener != null) {
+                    int postion = getBindingAdapterPosition();
+
+                    if (postion != RecyclerView.NO_POSITION) {
+                        itemClickListener.onItemClick(postion);
+                    }
+                }
+            });
         }
 
         public void setData(PlanetModel item) {

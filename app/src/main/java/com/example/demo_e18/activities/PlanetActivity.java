@@ -1,6 +1,7 @@
 package com.example.demo_e18.activities;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,7 +45,9 @@ public class PlanetActivity extends AppCompatActivity {
         RecyclerView rvPlanet = findViewById(R.id.rvPlanet);
         rvPlanet.setLayoutManager(new LinearLayoutManager(this));
 
-        var adapter = new PlanetAdapter(data);
+        var adapter = new PlanetAdapter(data, position -> {
+            Toast.makeText(this, "Planet: " + data.get(position).getName(), Toast.LENGTH_SHORT).show();
+        });
         rvPlanet.setAdapter(adapter);
     }
 
