@@ -1,7 +1,6 @@
-package com.example.demo_e18;
+package com.example.demo_e18.activities;
 
 import android.content.Context;
-import android.hardware.input.InputManager;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -17,6 +16,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.example.demo_e18.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
